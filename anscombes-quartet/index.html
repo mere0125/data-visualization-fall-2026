@@ -59,80 +59,75 @@
 
     .dream-fish {
       position: absolute;
-      top: 329px;
-      left: -110px;
+      top: 323px;
+      left: -125px;
       z-index: 0;
-      width: 70px;
-      height: 34px;
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      border-radius: 60% 48% 52% 60%;
-      background: linear-gradient(135deg, rgba(103, 209, 234, 0.58), rgba(161, 126, 240, 0.56));
-      box-shadow:
-        0 0 24px rgba(113, 187, 243, 0.38),
-        inset 8px 7px 16px rgba(255, 255, 255, 0.28);
-      opacity: 0.72;
+      width: 96px;
+      height: 44px;
+      overflow: visible;
+      opacity: 0.5;
       pointer-events: none;
-      animation: swim-across 24s linear infinite;
+      filter: drop-shadow(0 3px 8px rgba(80, 90, 155, 0.14));
+      animation: swim-across 28s linear infinite;
     }
 
-    .dream-fish::before {
-      position: absolute;
-      top: 5px;
-      left: -21px;
-      width: 0;
-      height: 0;
-      border-top: 12px solid transparent;
-      border-right: 24px solid rgba(145, 127, 232, 0.5);
-      border-bottom: 12px solid transparent;
-      content: "";
-      filter: drop-shadow(-3px 0 5px rgba(116, 119, 208, 0.18));
+    .fish-line {
+      fill: rgba(255, 255, 255, 0.1);
+      stroke: url(#fish-stroke);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .fish-fin {
+      fill: none;
+      stroke-width: 1.4;
+      opacity: 0.72;
+    }
+
+    .fish-eye {
+      fill: #4f5687;
+      stroke: rgba(255, 255, 255, 0.8);
+      stroke-width: 1.5;
+    }
+
+    .fish-tail {
+      transform-box: fill-box;
       transform-origin: right center;
-      animation: tail-wave 1.1s ease-in-out infinite alternate;
-    }
-
-    .dream-fish::after {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      width: 5px;
-      height: 5px;
-      background: rgba(32, 36, 68, 0.72);
-      border: 2px solid rgba(255, 255, 255, 0.86);
-      border-radius: 50%;
-      content: "";
-      box-shadow: 0 0 7px rgba(255, 255, 255, 0.9);
+      animation: tail-wave 1.25s ease-in-out infinite alternate;
     }
 
     @keyframes swim-across {
       0% {
-        transform: translate3d(0, 18px, 0) rotate(-2deg);
+        transform: translate3d(0, 1px, 0) rotate(-1deg);
       }
       25% {
-        transform: translate3d(calc(25vw + 60px), -18px, 0) rotate(2deg);
+        transform: translate3d(calc(25vw + 60px), -3px, 0) rotate(1deg);
       }
       50% {
-        transform: translate3d(calc(50vw + 120px), 12px, 0) rotate(-1deg);
+        transform: translate3d(calc(50vw + 120px), 3px, 0) rotate(-1deg);
       }
       75% {
-        transform: translate3d(calc(75vw + 180px), -14px, 0) rotate(2deg);
+        transform: translate3d(calc(75vw + 180px), -2px, 0) rotate(1deg);
       }
       100% {
-        transform: translate3d(calc(100vw + 260px), 16px, 0) rotate(-2deg);
+        transform: translate3d(calc(100vw + 260px), 1px, 0) rotate(-1deg);
       }
     }
 
     @keyframes tail-wave {
       from {
-        transform: scaleX(0.82) rotate(-7deg);
+        transform: rotate(-4deg) scaleX(0.94);
       }
       to {
-        transform: scaleX(1.08) rotate(7deg);
+        transform: rotate(4deg) scaleX(1.03);
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .dream-fish,
-      .dream-fish::before {
+      .fish-tail {
         animation: none;
       }
 
@@ -206,7 +201,7 @@
       z-index: 1;
     }
 
-    svg {
+    #chart > svg {
       width: 100%;
       max-width: 500px;
       height: auto;
@@ -305,7 +300,18 @@
 </head>
 
 <body>
-  <div class="dream-fish" aria-hidden="true"></div>
+  <svg class="dream-fish" viewBox="0 0 120 54" aria-hidden="true">
+    <defs>
+      <linearGradient id="fish-stroke" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#7dcfe0"></stop>
+        <stop offset="100%" stop-color="#8a79c9"></stop>
+      </linearGradient>
+    </defs>
+    <path class="fish-line fish-tail" d="M35 27 C24 16 14 15 7 20 C15 24 15 30 7 35 C15 40 25 38 35 27"></path>
+    <path class="fish-line" d="M34 27 C47 10 78 11 101 27 C78 43 47 44 34 27 Z"></path>
+    <path class="fish-line fish-fin" d="M60 17 C55 24 55 31 62 38"></path>
+    <circle class="fish-eye" cx="87" cy="23" r="2.4"></circle>
+  </svg>
 
   <header>
     <div class="eyebrow">Four datasets · one statistical lesson</div>

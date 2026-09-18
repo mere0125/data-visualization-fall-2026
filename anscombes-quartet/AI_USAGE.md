@@ -18,7 +18,7 @@ In a later revision, I asked Codex to make the page feel more personal while pre
 
 I then requested a more polished and dreamlike direction. Codex helped refine the page with a soft blue, lavender, and pink aurora background; translucent glass-style cards; pastel data colors; and subtle point shadows. The visualization logic and assignment-specified scales remained unchanged.
 
-I also requested a small fish swimming behind the visualization. Codex created the decorative fish entirely with CSS and placed it behind the chart cards so that it does not obscure the data. A reduced-motion fallback was included for accessibility.
+I also requested a small fish swimming behind the visualization. After rejecting an overly cartoon-like first version, I directed Codex toward a restrained single-line illustration. The final fish is an inline SVG with a thin gradient stroke and subtle tail movement, placed behind the chart cards so it does not obscure the data. A reduced-motion fallback was included for accessibility.
 
 ## Sources
 
