@@ -16,6 +16,8 @@ Codex helped organize and comment the HTML and JavaScript, reproduce the instruc
 
 In a later revision, I asked Codex to make the page feel more personal while preserving every assignment requirement. Codex helped develop a light-blue blueprint-inspired visual style, subtle chart grid lines, responsive chart cards, and hover tooltips that display each point's x and y values. The required reusable function and the different-color extra-credit parameter were preserved.
 
+I then requested a more polished and dreamlike direction. Codex helped refine the page with a soft blue, lavender, and pink aurora background; translucent glass-style cards; pastel data colors; and subtle point shadows. The visualization logic and assignment-specified scales remained unchanged.
+
 ## Sources
 
 - Assignment instructions: Jia Zhang, *Data Visualization for Architecture, Urbanism, and the Humanities — Fall 2026*.

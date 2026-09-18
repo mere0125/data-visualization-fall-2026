@@ -39,10 +39,10 @@ d3.csv("anscombe.csv").then(function(data) {
 
   // Draw all four datasets with the same reusable function.
   // Passing a color is the assignment's extra-credit extension.
-  drawScatterplot(dataset1, "#2563eb");
-  drawScatterplot(dataset2, "#7c3aed");
-  drawScatterplot(dataset3, "#db2777");
-  drawScatterplot(dataset4, "#0891b2");
+  drawScatterplot(dataset1, "#6687f5");
+  drawScatterplot(dataset2, "#9b72e8");
+  drawScatterplot(dataset3, "#ed7eb7");
+  drawScatterplot(dataset4, "#54c6d6");
 
 }).catch(function(error) {
   // If the CSV cannot load, report the problem in the browser console.
