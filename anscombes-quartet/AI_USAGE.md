@@ -1,0 +1,20 @@
+# AI usage documentation
+
+- **Student:** Mere Cui
+- **Course:** Data Visualization, Fall 2026
+- **Assignment:** Anscombe's Quartet
+- **AI tool:** OpenAI Codex
+- **Date:** September 18, 2026
+
+## Prompt and requested assistance
+
+I asked Codex to help complete the Anscombe's Quartet D3 tutorial exactly according to the instructor's supplied requirements and to explain what the assignment teaches. The supplied requirements called for an `anscombes-quartet` folder containing `index.html`, `script.js`, and `anscombe.csv`; loading D3 v7 and the CSV; converting `x` and `y` from strings to numbers; filtering Datasets I–IV; creating a reusable `drawScatterplot` function; drawing four separate 500 × 500 SVG scatter plots with the specified scales and axes; and completing the optional different-color extension by passing a color to the function.
+
+## How AI assisted
+
+Codex helped organize and comment the HTML and JavaScript, reproduce the instructor-provided CSV, add page styling and chart labels, implement the four required scatter plots, and add the optional color argument. I reviewed the files and remain responsible for understanding the code and the treatment of the data.
+
+## Sources
+
+- Assignment instructions: Jia Zhang, *Data Visualization for Architecture, Urbanism, and the Humanities — Fall 2026*.
+- Dataset: `anscombe.csv` from the instructor's `jjjiia/data_visualization_course` GitHub repository.
