@@ -5,35 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anscombe's Quartet</title>
   <style>
+    :root {
+      --ink: #17233d;
+      --muted: #60708f;
+      --paper: #f8fbff;
+      --blueprint: #dcecff;
+      --line: #c7d9f2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 40px 24px 64px;
-      background: #eaf4ff;
-      color: #1f2933;
-      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      padding: 56px 24px 72px;
+      background-color: var(--blueprint);
+      background-image:
+        linear-gradient(rgba(67, 112, 176, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(67, 112, 176, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
     }
 
     header {
       max-width: 1040px;
-      margin: 0 auto 32px;
+      margin: 0 auto 36px;
+      padding: 30px 34px;
+      background: rgba(248, 251, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(32, 63, 108, 0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      color: #3564a7;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: 36px;
+      margin: 0 0 12px;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
     }
 
     p {
       max-width: 720px;
       margin: 0;
-      color: #52606d;
-      line-height: 1.5;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .signature {
+      display: inline-flex;
+      margin-top: 20px;
+      padding: 8px 12px;
+      background: #17233d;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
     #chart {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 24px;
+      gap: 28px;
       max-width: 1040px;
       margin: 0 auto;
     }
@@ -42,24 +89,85 @@
       width: 100%;
       max-width: 500px;
       height: auto;
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
+      background: rgba(248, 251, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 14px 32px rgba(32, 63, 108, 0.12);
     }
 
     .chart-title {
-      font-size: 18px;
+      fill: var(--ink);
+      font-size: 17px;
       font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
     .axis-label {
-      fill: #52606d;
+      fill: var(--muted);
       font-size: 12px;
+      font-weight: 600;
+    }
+
+    .axis path,
+    .axis line {
+      stroke: #8496b3;
+    }
+
+    .axis text {
+      fill: var(--muted);
+      font-size: 11px;
+    }
+
+    .grid line {
+      stroke: var(--line);
+      stroke-dasharray: 3 5;
+    }
+
+    .grid path {
+      display: none;
+    }
+
+    .dot {
+      cursor: crosshair;
+      transition: opacity 160ms ease;
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 10;
+      pointer-events: none;
+      padding: 9px 11px;
+      background: #17233d;
+      border-radius: 9px;
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translate(12px, -12px);
+      transition: opacity 120ms ease;
+      box-shadow: 0 8px 20px rgba(23, 35, 61, 0.22);
+    }
+
+    .tooltip.visible {
+      opacity: 1;
+    }
+
+    footer {
+      max-width: 1040px;
+      margin: 30px auto 0;
+      color: #647694;
+      font-size: 12px;
+      text-align: center;
     }
 
     @media (max-width: 560px) {
       body {
-        padding: 24px 12px 40px;
+        padding: 20px 12px 40px;
+      }
+
+      header {
+        padding: 24px 20px;
+        border-radius: 16px;
       }
 
       #chart {
@@ -71,14 +179,19 @@
 
 <body>
   <header>
+    <div class="eyebrow">Four datasets · one statistical lesson</div>
     <h1>Anscombe's Quartet</h1>
     <p>
       Four datasets can share nearly identical summary statistics while forming
-      very different visual patterns. Mere Cui — Data Visualization — Fall 2026
+      very different visual patterns. Hover over a point to inspect its values.
     </p>
+    <div class="signature">Mere Cui · Data Visualization · Fall 2026</div>
   </header>
 
   <div id="chart">the chart will go here</div>
+  <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+
+  <footer>Same numbers on paper. Four completely different stories on screen.</footer>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="script.js"></script>

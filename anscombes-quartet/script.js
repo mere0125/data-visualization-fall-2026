@@ -74,13 +74,25 @@ function drawScatterplot(dataset, color) {
     .domain([0, 12])
     .range([450, 50]);
 
-  // Add a label so viewers can distinguish the four datasets.
+  // Add light blueprint-style grid lines behind the data.
+  svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", "translate(0, 450)")
+    .call(d3.axisBottom(xScale).ticks(10).tickSize(-400).tickFormat(""));
+
+  svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", "translate(50, 0)")
+    .call(d3.axisLeft(yScale).ticks(6).tickSize(-400).tickFormat(""));
+
+  // Add a left-aligned label so it does not overlap the high outlier.
   svg.append("text")
     .attr("class", "chart-title")
-    .attr("x", width / 2)
-    .attr("y", 30)
-    .attr("text-anchor", "middle")
-    .text("Dataset " + dataset[0].dataset);
+    .attr("x", 50)
+    .attr("y", 28)
+    .text("DATASET " + dataset[0].dataset);
+
+  const tooltip = d3.select("#tooltip");
 
   // Create one circle for every row in this dataset.
   svg.selectAll("circle")
@@ -92,13 +104,38 @@ function drawScatterplot(dataset, color) {
     .attr("cy", function(d) {
       return yScale(d.y);
     })
-    .attr("r", 5)
-    .attr("fill", color);
+    .attr("r", 7)
+    .attr("fill", color)
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 2)
+    .attr("class", "dot")
+    .on("mouseenter", function(event, d) {
+      d3.select(this)
+        .attr("r", 10)
+        .attr("stroke-width", 3);
+
+      tooltip
+        .classed("visible", true)
+        .html("Dataset " + d.dataset + "<br>x: " + d.x + " · y: " + d.y);
+    })
+    .on("mousemove", function(event) {
+      tooltip
+        .style("left", event.clientX + "px")
+        .style("top", event.clientY + "px");
+    })
+    .on("mouseleave", function() {
+      d3.select(this)
+        .attr("r", 7)
+        .attr("stroke-width", 2);
+
+      tooltip.classed("visible", false);
+    });
 
   // Create and draw the x-axis at the bottom of the chart.
   const xAxis = d3.axisBottom(xScale);
 
   svg.append("g")
+    .attr("class", "axis")
     .attr("transform", "translate(0, 450)")
     .call(xAxis);
 
@@ -106,6 +143,7 @@ function drawScatterplot(dataset, color) {
   const yAxis = d3.axisLeft(yScale);
 
   svg.append("g")
+    .attr("class", "axis")
     .attr("transform", "translate(50, 0)")
     .call(yAxis);
 

@@ -14,6 +14,8 @@ I asked Codex to help complete the Anscombe's Quartet D3 tutorial exactly accord
 
 Codex helped organize and comment the HTML and JavaScript, reproduce the instructor-provided CSV, add page styling and chart labels, implement the four required scatter plots, and add the optional color argument. I reviewed the files and remain responsible for understanding the code and the treatment of the data.
 
+In a later revision, I asked Codex to make the page feel more personal while preserving every assignment requirement. Codex helped develop a light-blue blueprint-inspired visual style, subtle chart grid lines, responsive chart cards, and hover tooltips that display each point's x and y values. The required reusable function and the different-color extra-credit parameter were preserved.
+
 ## Sources
 
 - Assignment instructions: Jia Zhang, *Data Visualization for Architecture, Urbanism, and the Humanities — Fall 2026*.
